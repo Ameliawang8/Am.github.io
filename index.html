@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王莹寐美Am | 个人主页</title>
+    <style>
+        /* --- 全局变量与重置 --- */
+        :root {
+            --primary-color: #FF7F50; /* 珊瑚橙：活力且不刺眼 */
+            --secondary-color: #FFF5EE; /* 浅贝壳色：用于背景点缀 */
+            --text-dark: #2c3e50;
+            --text-gray: #666;
+            --white: #ffffff;
+            --font-main: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            --font-serif: "Noto Serif SC", "Songti SC", serif; /* 用于Slogan */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: var(--font-main);
+            background-color: #FAFAFA;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- 动画类 --- */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        /* --- 布局容器 --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Hero Section (头部) --- */
+        header {
+            text-align: center;
+            padding: 80px 0 60px;
+            background: linear-gradient(180deg, var(--white) 0%, #FAFAFA 100%);
+        }
+
+        .avatar-box {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--white);
+            box-shadow: 0 10px 25px rgba(255, 127, 80, 0.2);
+        }
+
+        .avatar-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .tags span {
+            display: inline-block;
+            padding: 5px 15px;
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin: 5px;
+            border: 1px solid rgba(255, 127, 80, 0.2);
+        }
+
+        /* --- Slogan Section --- */
+        .slogan-section {
+            text-align: center;
+            padding: 40px 0;
+            background: var(--white);
+            margin-bottom: 40px;
+        }
+
+        .slogan-text {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        /* --- 双核心身份板块 (Grid布局) --- */
+        .dual-identity {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 127, 80, 0.15);
+        }
+
+        .card-img {
+            height: 220px;
+            width: 100%;
+            background-color: #eee;
+            overflow: hidden;
+        }
+        
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .card:hover .card-img img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 30px;
+            flex-grow: 1;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .role-tag {
+            font-size: 0.85rem;
+            background: #333;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: normal;
+        }
+
+        .info-group {
+            margin-bottom: 20px;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: var(--text-dark);
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        .info-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 6px;
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .info-list li::before {
+            content: "•";
+            color: var(--primary-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .endorsement {
+            background: #F9F9F9;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #555;
+            border-left: 3px solid #ddd;
+        }
+
+        .endorsement strong {
+            color: var(--text-dark);
+        }
+
+        /* --- 个人简介板块 --- */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .mini-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #eee;
+            transition: 0.3s;
+        }
+
+        .mini-card:hover {
+            border-color: var(--primary-color);
+        }
+
+        .mini-icon {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .mini-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .mini-desc {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        /* --- 底部联系 --- */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .contact-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.1);
+            padding: 15px 30px;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.1rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: 0.3s;
+        }
+
+        .contact-btn:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .wechat-note {
+            margin-top: 20px;
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        /* --- 响应式设计 --- */
+        @media (max-width: 768px) {
+            .dual-identity {
+                grid-template-columns: 1fr;
+            }
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-wrapper {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 头部 Hero Section -->
+    <header class="fade-in-up">
+        <div class="container">
+            <div class="avatar-box">
+                <!-- 替换为您提供的头像链接 -->
+                <img src="https://coze-user-file.tos-cn-beijing.volces.com/15808829068652/7576208417788215332/TAO_9737.JPG?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Credential=AKLTNjU0ZGJiM2IyN2E1NGExZWFiMDdmMzQ1NTAzZjlhOGU%2F20251124%2Fcn-beijing%2Ftos%2Frequest&X-Tos-Date=20251124T084454Z&X-Tos-Expires=3600&X-Tos-Signature=db8431a1120c5d2536490f6851f7035cacbe58f2ddf593c7857bb6f47ba0f713&X-Tos-SignedHeaders=host "王莹寐美Am">
+            </div>
+            <h1>王莹寐美Am</h1>
+            <div class="subtitle">橡胶厂二代 × 美术馆馆长 × 退伍女兵</div>
+            <div class="tags">
+                <span>上戏数媒本科 + 复旦MBA</span>
+                <span>ENFJ</span>
+                <span>艺术 x 商业</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Slogan -->
+    <section class="slogan-section fade-in-up delay-1">
+        <div class="container">
+            <p class="slogan-text">“ 徐徐图之，久久为功 ”</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- 核心身份板块 -->
+        <section class="dual-identity">
+            
+            <!-- 左侧：橡胶实业 -->
+            <div class="card rubber fade-in-up delay-2">
+                <div class="card-img">
+                    <!-- 橡胶背景图 -->
+                    <img src="https://coze-user-file.tos-cn-beijing.volces.com/15808829068652/7576208417788215332/3%E6%AC%BE%E4%B8%BB%E6%8E%A8%E4%BA%A7%E5%93%81.png?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Credential=AKLTNjU0ZGJiM2IyN2E1NGExZWFiMDdmMzQ1NTAzZjlhOGU%2F20251124%2Fcn-beijing%2Ftos%2Frequest&X-Tos-Date=20251124T083959Z&X-Tos-Expires=3600&X-Tos-Signature=9766fa34110625a9a8743ff04cf474096c0ebde3a2707594e4ca57f8448f3fbf&X-Tos-SignedHeaders=host"橡胶实业">
+                </div>
+                <div class="card-content">
+                    <div class="card-title">
+                        橡胶实业
+                        <span class="role-tag">厂二代</span>
+                    </div>
+                    <div class="info-group">
+                        <span class="info-label">主营产品</span>
+                        <p style="color:var(--text-gray); font-size:0.95rem;">橡塑原材料、环保增塑剂、通用胶黏剂</p>
+                    </div>
+                    <div class="info-group">
+                        <span class="info-label">合作方向</span>
+                        <ul class="info-list">
+                            <li>企业原料批量采购</li>
+                            <li>定制化橡胶制品对接</li>
+                            <li>行业客户资源推荐</li>
+                        </ul>
+                    </div>
+                    <div class="endorsement">
+                        <strong>信任背书：</strong>家族深耕橡胶行业30年以上，服务全世界上万家制造企业及贸易公司。  
+                   
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧：美术馆 -->
+            <div class="card art fade-in-up delay-3">
+                <div class="card-img">
+                    <!-- 美术馆背景图 -->
+                    <img src="https://coze-user-file.tos-cn-beijing.volces.com/15808829068652/7576208417788215332/IMG_7516.JPG?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Credential=AKLTNjU0ZGJiM2IyN2E1NGExZWFiMDdmMzQ1NTAzZjlhOGU%2F20251124%2Fcn-beijing%2Ftos%2Frequest&X-Tos-Date=20251124T084018Z&X-Tos-Expires=3600&X-Tos-Signature=d543988712ec78da005e251d4d80d2a39b598711f3e673040d20f8067700a324&X-Tos-SignedHeaders=host"大风堂美术馆">
+                </div>
+                <div class="card-content">
+                    <div class="card-title">
+                        大风堂美术馆
+                        <span class="role-tag">馆长</span>
+                    </div>
+                    <div class="info-group">
+                        <span class="info-label">核心资源</span>
+                        <p style="color:var(--text-gray); font-size:0.95rem;">馆藏张大千、张善子等大风堂名家书画作品</p>
+                    </div>
+                    <div class="info-group">
+                        <span class="info-label">合作方向</span>
+                        <ul class="info-list">
+                            <li>书画原作 采购/收藏/参拍/修复/鉴定</li>
+                            <li>企业/机构艺术展览合作</li>
+                            <li>文创产品联合开发 & 商业场地租赁</li>
+                        </ul>
+                    </div>
+                    <div class="endorsement">
+                        <strong>信任背书：</strong>市文旅下属单位，630平展厅，2025年度上海市文旅局扶持项目。
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- 个人简介 3点精简版 -->
+        <section class="profile-grid fade-in-up delay-3">
+            <div class="mini-card">
+                <span class="mini-icon">🎓</span>
+                <div class="mini-title">背景实力</div>
+                <div class="mini-desc">上戏数媒本科 + 复旦MBA<br>懂艺术审美，更懂商业落地</div>
+            </div>
+            <div class="mini-card">
+                <span class="mini-icon">✨</span>
+                <div class="mini-title">性格特质</div>
+                <div class="mini-desc">真诚、严谨、Peace&Love<br>ENFJ 人格</div>
+            </div>
+            <div class="mini-card">
+                <span class="mini-icon">🎨</span>
+                <div class="mini-title">个人喜好</div>
+                <div class="mini-desc">品美食、看展、学习新知识<br></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 底部联系方式 -->
+    <footer>
+        <div class="container">
+            <h2>联系合作</h2>
+            <p style="opacity: 0.8; margin-top:10px;">快速了解后，欢迎直接沟通</p>
+            
+            <div class="contact-wrapper">
+                <a href="tel:13391193797" class="contact-btn">
+                    <span>🏛️ 艺术业务</span>
+                    <span>133 9119 3797</span>
+                </a>
+                <a href="tel:13916360550" class="contact-btn">
+                    <span>🏭 橡塑业务</span>
+                    <span>139 1636 0550</span>
+                </a>
+            </div>
+            <div class="wechat-note">（微信同号）</div>
+        </div>
+    </footer>
+
+</body>
+</html>
